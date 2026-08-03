@@ -1,0 +1,23 @@
+# TravelSense — flat repository layout.
+#
+# Every file sits at the repo root; there are no folders. GitHub's browser and
+# mobile uploaders cannot create directories, and a missing directory is what
+# caused the earlier 404s.
+#
+# publish = "."          -> index.html is served at /
+# functions directory "." -> every root-level .js becomes a Netlify function
+#
+# IMPORTANT: leave "Base directory" EMPTY in Netlify's build settings. Any
+# value there shifts all of these paths and breaks the deploy.
+
+[build]
+  command = "echo 'No build step required'"
+  publish = "."
+
+[functions]
+  directory = "."
+  node_bundler = "esbuild"
+
+[build.environment]
+  # The chat function uses global fetch, which needs Node 18 or newer.
+  NODE_VERSION = "20"
